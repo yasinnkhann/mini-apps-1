@@ -1,5 +1,4 @@
 const csvParser = (text, cb) => {
-  console.log('TEXT: ', text);
   const parsedJSON = JSON.parse(text.slice(0, -1));
   console.log('PARSED: ', parsedJSON);
 
@@ -29,25 +28,18 @@ const csvParser = (text, cb) => {
   };
   helperFunc(parsedJSON);
 
-  console.log(keys);
-  console.log(values);
   const concatRes = keys.concat(values);
 
   for (let i = concatRes.length - 1; i >= 0; i -= 6) {
-    console.log(concatRes[i]);
     concatRes[i] = concatRes[i] + '\n'
   }
-  console.log(concatRes);
+
   let joinRes = concatRes.join(',');
-  console.log(joinRes);
 
-  // for (let i = 0; i < joinRes.length; i++) {
-  //   if (joinRes[i] === ' ') {
-  //     joinRes[i] = joinRes[i] + ',';
-  //   }
-  // }
+  const joinResArr = joinRes.split('\n,');
+  const finalAns = joinResArr.join('\n');
 
-  cb(null, joinRes);
+  cb(null, finalAns);
 };
 
 module.exports = csvParser;
