@@ -1,0 +1,22 @@
+-- CREATE DATABASE checkout;
+
+USE checkout;
+
+DROP TABLE IF EXISTS transaction;
+
+CREATE TABLE transaction (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  password VARCHAR(100) NOT NULL,
+  shippingAdd1 VARCHAR(250) NOT NULL,
+  shippingAdd2 VARCHAR(250),
+  city VARCHAR(250) NOT NULL,
+  zipCode VARCHAR(10) NOT NULL,
+  phoneNum VARCHAR(20) NOT NULL,
+  creditCardNum VARCHAR(19) NOT NULL,
+  expiryDate VARCHAR(25) NOT NULL,
+  CVV INT NOT NULL,
+  billingZipCode VARCHAR(10) NOT NULL,
+  PRIMARY KEY (id)
+);
