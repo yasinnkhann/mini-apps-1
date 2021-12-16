@@ -8,14 +8,31 @@ function App () {
 }
 // HOME PAGE COMP
 function HomePage () {
+  const handleCheckoutBtn = () => {
+    fetch('http://localhost:3000/post', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({})
+    })
+    .then(res => {
+      console.log(res);
+      // console.log(res.json());
+    })
+    .catch(err => {
+      console.error(err)
+    })
+  };
+
   return (
     <div>
-      <button>Checkout</button>
+      <button onClick={handleCheckoutBtn}>Checkout</button>
       <Form1 />
       <Form2 />
       <Form3 />
     </div>
-  )
+  );
 }
 // FORM 1 COMP
 class Form1 extends React.Component {

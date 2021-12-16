@@ -16,7 +16,7 @@ CREATE TABLE transaction (
   phoneNum VARCHAR(20) NOT NULL,
   creditCardNum VARCHAR(19) NOT NULL,
   expiryDate VARCHAR(25) NOT NULL,
-  CVV INT NOT NULL,
+  CVV VARCHAR(10) NOT NULL,
   billingZipCode VARCHAR(10) NOT NULL,
   PRIMARY KEY (id)
 );

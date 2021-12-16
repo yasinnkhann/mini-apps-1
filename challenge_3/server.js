@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const PORT = 3000;
-const { getAll } = require('./db.js');
+const { getAll, postRecord } = require('./db.js');
 
 app.use(express.static('public'));
 
@@ -18,11 +18,11 @@ app.get('/get', (req, res) => {
 })
 
 app.post('/post', (req, res) => {
-  postRecord((err, record) => {
+  postRecord(req.body, (err, record) => {
     if (err) {
       res.status(400).json('Not able to post record');
     } else {
-      res.status(201)
+      res.status(201).json('success');
     }
   })
 })
