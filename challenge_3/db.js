@@ -15,8 +15,6 @@ db.connect(err => {
   }
 })
 
-// module.exports.db = db;
-
 module.exports = {
   getAll: function(cb) {
     const queryStr = 'SELECT * FROM transaction;';
