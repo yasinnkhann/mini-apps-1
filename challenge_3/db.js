@@ -29,8 +29,8 @@ module.exports = {
     })
   },
 
-  postRecord: function(cb) {
-    const queryStr = `INSERT INTO transaction (name, email, password, shippingAdd1, shippingAdd2, city, zipCode, phoneNum, creditCardNum, expiryDate, CVV, billingZipCode) VALUES ('updateMe', 'updateMe', 'updateMe', 'updateMe', 'updateMe', 'updateMe', 'updateMe', 'updateMe', 'updateMe', 'updateMe', 'updateMe', 'updateMe');`;
+    postRecord: function(cb) {
+    const queryStr = `INSERT INTO transaction (name, email, password, shippingAdd1, shippingAdd2, city, zipCode, phoneNum, creditCardNum, expiryDate, CVV, billingZipCode) VALUES ('', '', '', '', '', '', '', '', '', '', '', '');`;
     db.query(queryStr, (err, result) => {
       if (err) {
         cb(err, null);
