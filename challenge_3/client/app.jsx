@@ -11,18 +11,13 @@ function HomePage () {
   const handleCheckoutBtn = () => {
     fetch('http://localhost:3000/post', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({})
+      headers: { 'Content-Type': 'application/json' }
     })
-    .then(res => {
-      console.log(res);
-      // console.log(res.json());
-    })
+    .then(res => res.json())
+    .then(data => console.log(data))
     .catch(err => {
       console.error(err)
-    })
+    });
   };
 
   return (
@@ -45,6 +40,7 @@ class Form1 extends React.Component {
     };
     // BINDERS
     this.handleChange = this.handleChange.bind(this);
+    this.handleForm1Btn = this.handleForm1Btn.bind(this);
   };
 
   handleChange(e) {
@@ -53,10 +49,25 @@ class Form1 extends React.Component {
     });
   }
 
+  handleForm1Btn(e) {
+    e.preventDefault();
+
+    fetch(`http://localhost:3000/put/form1`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(this.state)
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(err => {
+      console.error(err)
+    });
+  }
+
   render() {
 
     return (
-        <form>
+        <form onSubmit={this.handleForm1Btn}>
             <label htmlFor="name">Name: </label>
             <input
               type="text"
@@ -106,6 +117,7 @@ class Form2 extends React.Component {
     };
     // BINDERS
     this.handleChange = this.handleChange.bind(this);
+    this.handleForm2Btn = this.handleForm2Btn.bind(this);
   };
 
   handleChange(e) {
@@ -114,10 +126,24 @@ class Form2 extends React.Component {
     });
   }
 
+  handleForm2Btn(e) {
+    e.preventDefault();
+    fetch(`http://localhost:3000/put/form2`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(this.state)
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(err => {
+      console.error(err)
+    });
+  }
+
   render() {
 
     return (
-        <form>
+        <form onSubmit={this.handleForm2Btn}>
           <label htmlFor="shippingAdd1">Shipping Address 1: </label>
           <input
             type="text"
@@ -187,6 +213,7 @@ class Form3 extends React.Component {
     };
     // BINDERS
     this.handleChange = this.handleChange.bind(this);
+    this.handleForm3Btn = this.handleForm3Btn.bind(this);
   };
 
   handleChange(e) {
@@ -195,10 +222,25 @@ class Form3 extends React.Component {
     });
   }
 
+  handleForm3Btn(e) {
+    e.preventDefault();
+
+    fetch(`http://localhost:3000/put/form3`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(this.state)
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(err => {
+      console.error(err)
+    });
+  }
+
   render() {
 
     return (
-        <form>
+        <form onSubmit ={this.handleForm3Btn}>
             <label htmlFor="creditCardNum">Credit Card Number: </label>
             <input
               type="tel"
