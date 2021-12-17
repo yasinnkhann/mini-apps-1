@@ -1,14 +1,86 @@
 // APP COMP
-function App () {
-  return (
-    <div>
-      <HomePage />
-    </div>
-  )
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isHomePageRendered: true,
+      isForm1Rendered: false,
+      isForm2Rendered: false,
+      isForm3Rendered: false
+    };
+    // BINDERS
+    this.handleCheckoutBtnClicked = this.handleCheckoutBtnClicked.bind(this);
+    this.handleForm1NextBtn = this.handleForm1NextBtn.bind(this);
+    this.handleForm2NextBtn = this.handleForm2NextBtn.bind(this);
+    this.handleForm3PurchaseBtn = this.handleForm3PurchaseBtn.bind(this);
+  };
+
+  handleCheckoutBtnClicked() {
+    this.setState({
+      isHomePageRendered: false,
+      isForm1Rendered: true,
+      isForm2Rendered: false,
+      isForm3Rendered: false
+    });
+  }
+
+  handleForm1NextBtn() {
+    this.setState({
+      isHomePageRendered: false,
+      isForm1Rendered: false,
+      isForm2Rendered: true,
+      isForm3Rendered: false
+    });
+  }
+
+  handleForm2NextBtn() {
+    this.setState({
+      isHomePageRendered: false,
+      isForm1Rendered: false,
+      isForm2Rendered: false,
+      isForm3Rendered: true
+    });
+  }
+
+  handleForm3PurchaseBtn() {
+    this.setState({
+      isHomePageRendered: true,
+      isForm1Rendered: false,
+      isForm2Rendered: false,
+      isForm3Rendered: false
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        {this.state.isHomePageRendered && (
+          <HomePage checkoutBtnClicked={this.handleCheckoutBtnClicked} />
+        )}
+        {this.state.isForm1Rendered && (
+          <Form1 form1NextBtn={this.handleForm1NextBtn} />
+        )}
+        {this.state.isForm2Rendered && (
+          <Form2 form2NextBtn={this.handleForm2NextBtn} />
+        )}
+        {this.state.isForm3Rendered && (
+          <Form3 form3PurchaseBtn={this.handleForm3PurchaseBtn} />
+        )}
+      </div>
+    );
+  }
 }
+
 // HOME PAGE COMP
-function HomePage () {
-  const handleCheckoutBtn = () => {
+class HomePage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+    // BINDERS
+    this.handleCheckoutBtn = this.handleCheckoutBtn.bind(this);
+  };
+
+  handleCheckoutBtn() {
     fetch('http://localhost:3000/post', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' }
@@ -18,17 +90,19 @@ function HomePage () {
     .catch(err => {
       console.error(err)
     });
-  };
+    this.props.checkoutBtnClicked();
+  }
 
-  return (
+  render() {
+
+    return (
     <div>
-      <button onClick={handleCheckoutBtn}>Checkout</button>
-      <Form1 />
-      <Form2 />
-      <Form3 />
+      <button onClick={this.handleCheckoutBtn}>Checkout</button>
     </div>
-  );
+    );
+  }
 }
+
 // FORM 1 COMP
 class Form1 extends React.Component {
   constructor(props) {
@@ -62,6 +136,7 @@ class Form1 extends React.Component {
     .catch(err => {
       console.error(err)
     });
+    this.props.form1NextBtn();
   }
 
   render() {
@@ -138,6 +213,7 @@ class Form2 extends React.Component {
     .catch(err => {
       console.error(err)
     });
+    this.props.form2NextBtn();
   }
 
   render() {
@@ -235,6 +311,7 @@ class Form3 extends React.Component {
     .catch(err => {
       console.error(err)
     });
+    this.props.form3PurchaseBtn();
   }
 
   render() {
